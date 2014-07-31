@@ -5,6 +5,7 @@
 </head>
 
 <div id='foo'>PICK A CARD</div>
+<div id='poo'>SHUFFLE CARDS</div>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 
 <script src="/socket.io/socket.io.js"></script>
@@ -13,13 +14,22 @@
   var socket = io.connect('http://localhost:3000');
   var count = 0;
   $('#foo').click(function() {
-		socket.emit('touch', count);
+		socket.emit('card', count);
 	});
 
-  socket.on('gamesend', function(game) {
+  $('#poo').click(function() {
+    socket.emit('shuffle');
+  });
+
+  socket.on('gamesend', function (game) {
     var card = game.cards[count];
     count++;
   	alert('Card Number ' + count + " is: " + card);
+  });
+
+  socket.on('shuffled', function (game) {
+    var arr = game.deck;
+    alert('Current Deck:\n' + arr);
   });
 </script>
 
