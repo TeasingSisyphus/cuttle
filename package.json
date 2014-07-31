@@ -1,0 +1,9 @@
+{
+  "name": "cuttle_game",
+  "version": "0.0.1",
+  "description": "A Card Game for Two Players",
+  "dependencies": {
+    "express": "^4.7.2",
+    "socket.io": "^1.0.6"
+  }
+}
