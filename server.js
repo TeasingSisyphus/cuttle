@@ -26,11 +26,13 @@ var Game = function() {
 	this.p2 = new Player();
 
 }
+var count = 0;
 var game = new Game();
 io.on('connection', function (socket){
 	console.log('request made');
 	socket.on('touch', function (num){
-		console.log(game.cards[5]);
+		count++;
+		console.log(game.cards[num]);
 		socket.emit('gamesend', game);
 	});
 });

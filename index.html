@@ -4,7 +4,7 @@
 	<link rel="stylesheet" type="text/css" href="./index.css">
 </head>
 
-<div id='foo'>flummaxed</div>
+<div id='foo'>PICK A CARD</div>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 
 <script src="/socket.io/socket.io.js"></script>
@@ -13,12 +13,13 @@
   var socket = io.connect('http://localhost:3000');
   var count = 0;
   $('#foo').click(function() {
-		count++;
 		socket.emit('touch', count);
 	});
 
   socket.on('gamesend', function(game) {
-  	alert('Deck: ', game.cards[5]);
+    var card = game.cards[count];
+    count++;
+  	alert('Card Number ' + count + " is: " + card);
   });
 </script>
 
