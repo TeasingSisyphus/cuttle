@@ -62,6 +62,16 @@ Game.prototype.shuffle = function() {
 	}
 };
 
+//Deals Hands to p1 and p2 from the deck
+//p1 gets 6 cards, p2 gets 5 and p2 plays first
+Game.prototype.deal = function() {
+	this.p1.hand[0] = this.deck.shift();
+	for (var i = 0; i < 5; i++) {
+		this.p2.hand[i] = this.deck.shift();
+		this.p1.hand[i+1] = this.deck.shift();
+	};
+}
+
 ////////////////////
 //Object Instances//
 ////////////////////
@@ -96,5 +106,11 @@ io.on('connection', function (socket){
 		console.log('shuffles made');
 		socket.emit('shuffled', game);
 		console.log('shuffle emitted');
+	});
+
+	socket.on('deal', function () {
+		game.deal();
+		console.log('hands dealt');
+		socket.emit('dealt', game);
 	});
 });

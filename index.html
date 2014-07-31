@@ -6,6 +6,7 @@
 
 <div id='foo'>PICK A CARD</div>
 <div id='poo'>SHUFFLE CARDS</div>
+<div id='boo'>DEAL</div>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 
 <script src="/socket.io/socket.io.js"></script>
@@ -21,6 +22,10 @@
     socket.emit('shuffle');
   });
 
+  $('#boo').click(function() {
+    socket.emit('deal');
+  });
+
   socket.on('gamesend', function (game) {
     var card = game.cards[count];
     count++;
@@ -30,6 +35,12 @@
   socket.on('shuffled', function (game) {
     var arr = game.deck;
     alert('Current Deck:\n' + arr);
+  });
+
+  socket.on('dealt', function (game) {
+    var temp = game.p1.hand;
+    var temp2 = game.p2.hand;
+    alert("Player 1's Hand: " + temp + "\nPlayer 2's Hand: " + temp2);
   });
 </script>
 
