@@ -1,13 +1,14 @@
 <head>
 	<meta charset = "utf-8" />
 	<title>TEST</title>
-	<link rel="stylesheet" type="text/css" href="./index.css">
+	<!--<link rel="stylesheet" type="text/css" href="./index.css">-->
 </head>
 
 <div id='foo'>PICK A CARD</div>
 <div id='poo'>SHUFFLE CARDS</div>
 <div id='boo'>DEAL</div>
-<div id='blu'>Play Card P1</div>
+<div id='blu'>Play Card to Field P1</div>
+<div id='goo'>Play Card to Field P2</div>
 
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -17,27 +18,41 @@
 <script>
   var socket = io.connect('http://localhost:3000');
   var count = 0;
-  $('#foo').click(function() {
+
+  /////////////////////////
+  //On Click Method Calls//
+  /////////////////////////
+
+  $('#foo').click(function() {  //when Pick a Card div is clicked
 		socket.emit('card', count);
 	});
 
-  $('#poo').click(function() {
+  $('#poo').click(function() {  //when shuffle div is clicked
     socket.emit('shuffle');
   });
 
-  $('#boo').click(function() {
+  $('#boo').click(function() {  //when deal div is clicked
     socket.emit('deal');
   });
 
   $('#blu').click(function() {
     var index = prompt('Which Card, sucka?!');
     socket.emit('p1_play', index);
-  })
+  });
+
+  $('#goo').click(function() {
+    var index = prompt('Which Card, sucka?!');
+    socket.emit('p2_play', index);
+  });
+
+  ////////////////
+  //Socket Stuff//
+  ////////////////
 
   socket.on('gamesend', function (game) {
     var card = game.cards[count];
     count++;
-  	alert('Card Number ' + count + " is: " + card);
+  	console.log('Card Number ' + count + " is: " + card);
   });
 
   socket.on('shuffled', function (game) {
@@ -48,7 +63,11 @@
   socket.on('dealt', function (game) {
     var temp = game.p1.hand;
     var temp2 = game.p2.hand;
-    alert("Player 1's Hand: " + temp + "\nPlayer 2's Hand: " + temp2);
+    console.log("Player 1's Hand: " + temp + "\nPlayer 2's Hand: " + temp2);
+  });
+
+  socket.on('render', function (game){
+    alert('Player 1 Cards: '+game.p1.hand+'\nPlayer 1 Field: '+ game.p1.field+'\nPlayer 2 Cards: '+game.p2.hand+'\nPlayer 2 Field: '+ game.p2.field);
   });
 </script>
 

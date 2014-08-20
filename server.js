@@ -77,7 +77,7 @@ Player.prototype.to_field = function (index) {
 	temp = this.hand[index];
 	this.hand[index] = this.hand[0];
 	this.hand[0] = temp;
-	this.field[0] = this.hand.shift();
+	this.field[this.field.length] = this.hand.shift();
 }
 
 ////////////////////
@@ -127,5 +127,12 @@ io.on('connection', function (socket){
 	socket.on('p1_play', function(index) {
 		game.p1.to_field(index);
 		console.log('p1 hand: ' + game.p1.hand + '\np1 field: ' + game.p1.field);
+		socket.emit('render', game);
+	});
+
+	socket.on('p2_play', function(index) {
+		game.p2.to_field(index);
+		console.log('p2 hand: ' + game.p2.hand + '\np2 field: ' + game.p2.field);
+		socket.emit('render', game);
 	});
 });
