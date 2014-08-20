@@ -141,4 +141,8 @@ io.on('connection', function (socket){
 	//		document.getelementById('field2').innerHTML +='p1 hand: ' + game.p1.hand + '\np1 field: ' + game.p1.field;
 	//	}
 	});
+
+	socket.on('render req', function() {
+		socket.emit('render', game);
+	});
 });
