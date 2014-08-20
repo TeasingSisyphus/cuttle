@@ -9,8 +9,26 @@
 <div id='dealcard'>DEAL</div>
 <div id='field1button'>Play Card to Field P1</div>
 <div id='field2button'>Play Card to Field P2</div>
-<div id='hand1'></div>
-<div id='hand2'></div>
+<div id='hand1'>
+  <div id='p_one_h0' class ='p1hand'></div>
+  <div id='p_one_h1' class ='p1hand'></div>
+  <div id='p_one_h2' class ='p1hand'></div>
+  <div id='p_one_h3' class ='p1hand'></div>
+  <div id='p_one_h4' class ='p1hand'></div>
+  <div id='p_one_h5' class ='p1hand'></div>
+  <div id='p_one_h6' class ='p1hand'></div>
+  <div id='p_one_h7' class ='p1hand'></div>
+</div>
+<div id='hand2'>
+  <div id='p_two_h0' class ='p2hand'></div>
+  <div id='p_two_h1' class ='p2hand'></div>
+  <div id='p_two_h2' class ='p2hand'></div>
+  <div id='p_two_h3' class ='p2hand'></div>
+  <div id='p_two_h4' class ='p2hand'></div>
+  <div id='p_two_h5' class ='p2hand'></div>
+  <div id='p_two_h6' class ='p2hand'></div>
+  <div id='p_two_h7' class ='p2hand'></div>
+</div>
 <div id='field1'></div>
 <div id='field2'></div>
 
@@ -76,14 +94,15 @@
 
 
   socket.on('render', function (game){
-   function () writeComment{
-      document.getelementById('field1').innerHTML +='p1 field: ' + game.p1.field};
-      function () writeComment{
-      document.getelementById('hand1').innerHTML +='p1 hand: ' + game.p1.hand};
- function () writeComment{
-      document.getelementById('field2').innerHTML +='p2 field: ' + game.p2.field};
-      function () writeComment{
-      document.getelementById('hand2').innerHTML +='p2 hand: ' + game.p2.hand};
+    console.log('render called');
+    var temp = game;
+    $('.p1hand').each(function () {
+      var index = $(this).id;
+      $(this).html(index);
+      //index = index.replace(/[^\d]/g, '');
+      console.log(index);
+      console.log(this.id);
+    });
 
   });
 </script>
