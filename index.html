@@ -4,12 +4,15 @@
 	<!--<link rel="stylesheet" type="text/css" href="./index.css">-->
 </head>
 
-<div id='foo'>PICK A CARD</div>
-<div id='poo'>SHUFFLE CARDS</div>
-<div id='boo'>DEAL</div>
-<div id='blu'>Play Card to Field P1</div>
-<div id='goo'>Play Card to Field P2</div>
-
+<div id='picard'>PICK A CARD</div>
+<div id='shuflcard'>SHUFFLE CARDS</div>
+<div id='dealcard'>DEAL</div>
+<div id='field1button'>Play Card to Field P1</div>
+<div id='field2button'>Play Card to Field P2</div>
+<div id='hand1'></div>
+<div id='hand2'></div>
+<div id='field1'></div>
+<div id='field2'></div>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 
@@ -23,24 +26,24 @@
   //On Click Method Calls//
   /////////////////////////
 
-  $('#foo').click(function() {  //when Pick a Card div is clicked
+  $('#picard').click(function() {  //when Pick a Card div is clicked
 		socket.emit('card', count);
 	});
 
-  $('#poo').click(function() {  //when shuffle div is clicked
+  $('#shuflcard').click(function() {  //when shuffle div is clicked
     socket.emit('shuffle');
   });
 
-  $('#boo').click(function() {  //when deal div is clicked
+  $('#dealcard').click(function() {  //when deal div is clicked
     socket.emit('deal');
   });
 
-  $('#blu').click(function() {
+  $('#field1button').click(function() {
     var index = prompt('Which Card, sucka?!');
     socket.emit('p1_play', index);
   });
 
-  $('#goo').click(function() {
+  $('#field2button').click(function() {
     var index = prompt('Which Card, sucka?!');
     socket.emit('p2_play', index);
   });
@@ -67,7 +70,15 @@
   });
 
   socket.on('render', function (game){
-    alert('Player 1 Cards: '+game.p1.hand+'\nPlayer 1 Field: '+ game.p1.field+'\nPlayer 2 Cards: '+game.p2.hand+'\nPlayer 2 Field: '+ game.p2.field);
+   function () writeComment{
+      document.getelementById('field1').innerHTML +='p1 field: ' + game.p1.field};
+      function () writeComment{
+      document.getelementById('hand1').innerHTML +='p1 hand: ' + game.p1.hand};
+ function () writeComment{
+      document.getelementById('field2').innerHTML +='p2 field: ' + game.p2.field};
+      function () writeComment{
+      document.getelementById('hand2').innerHTML +='p2 hand: ' + game.p2.hand};
+
   });
 </script>
 
