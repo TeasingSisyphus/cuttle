@@ -30,7 +30,8 @@
   });
 
   $('#blu').click(function() {
-    socket.emit('p1_play');
+    var index = prompt('Which Card, sucka?!');
+    socket.emit('p1_play', index);
   })
 
   socket.on('gamesend', function (game) {
@@ -41,7 +42,7 @@
 
   socket.on('shuffled', function (game) {
     var arr = game.deck;
-    alert('Current Deck:\n' + arr);
+    console.log('Current Deck:\n' + arr);
   });
 
   socket.on('dealt', function (game) {

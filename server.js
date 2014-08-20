@@ -124,8 +124,8 @@ io.on('connection', function (socket){
 		socket.emit('dealt', game);
 	});
 
-	socket.on('p1_play', function() {
-		game.p1.to_field(0);
+	socket.on('p1_play', function(index) {
+		game.p1.to_field(index);
 		console.log('p1 hand: ' + game.p1.hand + '\np1 field: ' + game.p1.field);
 	});
 });
