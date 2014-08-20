@@ -7,6 +7,9 @@
 <div id='foo'>PICK A CARD</div>
 <div id='poo'>SHUFFLE CARDS</div>
 <div id='boo'>DEAL</div>
+<div id='blu'>Play Card P1</div>
+
+
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 
 <script src="/socket.io/socket.io.js"></script>
@@ -25,6 +28,10 @@
   $('#boo').click(function() {
     socket.emit('deal');
   });
+
+  $('#blu').click(function() {
+    socket.emit('p1_play');
+  })
 
   socket.on('gamesend', function (game) {
     var card = game.cards[count];

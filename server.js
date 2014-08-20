@@ -38,6 +38,7 @@ var Game = function() {
 	this.deck = this.cards;
 	this.p1 = new Player();
 	this.p2 = new Player();
+	this.scrap = [];
 
 }
 //////////////////////
@@ -70,6 +71,13 @@ Game.prototype.deal = function() {
 		this.p2.hand[i] = this.deck.shift();
 		this.p1.hand[i+1] = this.deck.shift();
 	};
+}
+
+Player.prototype.to_field = function (index) {
+	temp = this.hand[index];
+	this.hand[index] = this.hand[0];
+	this.hand[0] = temp;
+	this.field[0] = this.hand.shift();
 }
 
 ////////////////////
@@ -108,9 +116,16 @@ io.on('connection', function (socket){
 		console.log('shuffle emitted');
 	});
 
+	//function executes when user clicks 'DEAL'
+	//Calls deal method on game
 	socket.on('deal', function () {
 		game.deal();
 		console.log('hands dealt');
 		socket.emit('dealt', game);
+	});
+
+	socket.on('p1_play', function() {
+		game.p1.to_field(0);
+		console.log('p1 hand: ' + game.p1.hand + '\np1 field: ' + game.p1.field);
 	});
 });
