@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "A Card Game for Two Players",
   "dependencies": {
-    "express": "^4.7.2",
+    "express": "^4.8.5",
     "socket.io": "^1.0.6"
-  }
+  },
+  "private": "true"
 }

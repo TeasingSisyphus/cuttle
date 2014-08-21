@@ -9,10 +9,10 @@ var io = require('socket.io')(server);
 
 server.listen(3000);
 console.log('Server has started');
-
 app.get('/', function (req, res) {
   res.sendfile('./index.html');
 });
+
 
 //////////////////////
 //Object Definitions//

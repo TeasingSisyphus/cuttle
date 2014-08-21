@@ -1,37 +1,74 @@
 <head>
 	<meta charset = "utf-8" />
 	<title>TEST</title>
-	<!--<link rel="stylesheet" type="text/css" href="./index.css">-->
+
+
+  <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 
-<div id='picard'>PICK A CARD</div>
-<div id='shuflcard'>SHUFFLE CARDS</div>
-<div id='dealcard'>DEAL</div>
-<div id='field1button'>Play Card to Field P1</div>
-<div id='field2button'>Play Card to Field P2</div>
-<div id='renderbutton'>RENDER</div>
-<div id='hand1'> Player 1 Hand:
-  <div id='p_one_h0' class ='p1hand'></div>
-  <div id='p_one_h1' class ='p1hand'></div>
-  <div id='p_one_h2' class ='p1hand'></div>
-  <div id='p_one_h3' class ='p1hand'></div>
-  <div id='p_one_h4' class ='p1hand'></div>
-  <div id='p_one_h5' class ='p1hand'></div>
-  <div id='p_one_h6' class ='p1hand'></div>
-  <div id='p_one_h7' class ='p1hand'></div>
+<div id='fullwrap'>
+
+<!--Top Wrap: Player 1's Hand -->
+<div id='hand1' class='wrap2'> Player 1 Hand:
+
+    <div id='p_one_h0' class ='p1hand'></div>
+    <div id='p_one_h1' class ='p1hand'></div>
+    <div id='p_one_h2' class ='p1hand'></div>
+    <div id='p_one_h3' class ='p1hand'></div>
+    <div id='p_one_h4' class ='p1hand'></div>
+    <div id='p_one_h5' class ='p1hand'></div>
+    <div id='p_one_h6' class ='p1hand'></div>
+    <div id='p_one_h7' class ='p1hand'></div>
+
+  <!--Picking Cards--> 
+    <div id='picard1'>PICK CARD</div>
+  <!--FIeld Cards-->
+    <div id='field1button'>Play Card to Field P1</div>
+  
+  
+
 </div>
-<div id='hand2'>Player 2 Hand:
-  <div id='p_two_h0' class ='p2hand'></div>
-  <div id='p_two_h1' class ='p2hand'></div>
-  <div id='p_two_h2' class ='p2hand'></div>
-  <div id='p_two_h3' class ='p2hand'></div>
-  <div id='p_two_h4' class ='p2hand'></div>
-  <div id='p_two_h5' class ='p2hand'></div>
-  <div id='p_two_h6' class ='p2hand'></div>
-  <div id='p_two_h7' class ='p2hand'></div>
+
+<!--Middle Wrap: THe Field-->
+<div id='field' class='wrap2'>THe FIELD
+
+  <!--Field Player 1 -->
+  <div id='field1'>Player 1 Field</div>
+
+  <!--Field Player 2 -->
+   <div id='field2'>Player 2 Field</div>
+
 </div>
-<div id='field1'></div>
-<div id='field2'></div>
+<!--Bottom Wrap: Player 2's Hand -->
+<div id= 'hand2' class ='wrap2'>Player 2 Hand:
+
+    <div id='p_two_h0' class ='p2hand'></div>
+    <div id='p_two_h1' class ='p2hand'></div>
+    <div id='p_two_h2' class ='p2hand'></div>
+    <div id='p_two_h3' class ='p2hand'></div>
+    <div id='p_two_h4' class ='p2hand'></div>
+    <div id='p_two_h5' class ='p2hand'></div>
+    <div id='p_two_h6' class ='p2hand'></div>
+    <div id='p_two_h7' class ='p2hand'></div>
+   
+   <!--Picking Cards--> 
+    <div id='picard2'>PICK CARD</div>
+   <!--FIeld Cards-->
+    <div id='field2button'>Play Card to Field P2</div>
+ 
+
+</div>
+
+</div>
+
+<!-- FLoat Elements For GamePlay -->
+        
+        <div id='shuflcard'>SHUFFLE CARDS</div>
+        <div id='dealcard'>DEAL</div>
+        <div id='renderbutton'>RENDER</div>
+
+
+</div>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 

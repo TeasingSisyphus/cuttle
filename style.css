@@ -1,0 +1,22 @@
+html , body {height:100%;
+			margin: 0;
+			}
+
+body{
+
+}
+	/*Wraps - Hands and Field Wrap */
+
+.wrap2 {
+	min-height: 25%;
+	max-height: 25%;
+	display: list-item;
+	background-color: #19D7F7;
+ }
+
+ .p1hand, .p2hand {
+ 	background-size: 100%;
+ 	background-color: #12f34f;
+ 	max-width: 10%;
+ 	max-height: 70%;
+ }
