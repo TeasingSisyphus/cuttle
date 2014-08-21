@@ -1,6 +1,6 @@
 <head>
-	<meta charset = "utf-8" />
-	<title>TEST</title>
+  <meta charset = "utf-8" />
+  <title>TEST</title>
 
 
   <link rel="stylesheet" type="text/css" href="./style.css">
@@ -97,8 +97,8 @@
   /////////////////////////
 
   $('#picard').click(function() {  //when Pick a Card div is clicked
-		socket.emit('card', count);
-	});
+    socket.emit('card', count);
+  });
 
   $('#shuflcard').click(function() {  //when shuffle div is clicked
     socket.emit('shuffle');
@@ -129,7 +129,7 @@
   socket.on('gamesend', function (game) {
     var card = game.cards[count];
     count++;
-  	console.log('Card Number ' + count + " is: " + card);
+    console.log('Card Number ' + count + " is: " + card);
   });
 
   socket.on('shuffled', function (game) {
@@ -166,7 +166,7 @@
     $('.p2hand').each(function () {
       var index = $(this).prop('id');
       index = index.replace(/[^\d]/g, '');
-      var card = temp.p1.hand[index];
+      var card = temp.p2.hand[index];
       console.log(index);
       console.log(card);
       $(this).html(card);
@@ -183,7 +183,7 @@
     });
 
     //Renders Player 2's Field
-    $('.p1field').each(function () {
+    $('.p2field').each(function () {
       var index = $(this).prop('id');
       index = index.replace(/[^\d]/g, '');
       var card = temp.p2.field[index];
@@ -193,5 +193,3 @@
     });
   });
 </script>
-
-
