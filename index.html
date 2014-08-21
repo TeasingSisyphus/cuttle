@@ -33,10 +33,22 @@
 <div id='field' class='wrap2'>THe FIELD
 
   <!--Field Player 1 -->
-  <div id='field1'>Player 1 Field</div>
+  <div id='field1'>Player 1 Field:
+    <div id='p_one_f0' class ='p1field'></div>
+    <div id='p_one_f1' class ='p1field'></div>
+    <div id='p_one_f2' class ='p1field'></div>
+    <div id='p_one_f3' class ='p1field'></div>
+    <div id='p_one_f4' class ='p1field'></div>
+  </div>
 
   <!--Field Player 2 -->
-   <div id='field2'>Player 2 Field</div>
+   <div id='field2'>Player 2 Field
+    <div id='p_two_f0' class ='p2field'></div>
+    <div id='p_two_f1' class ='p2field'></div>
+    <div id='p_two_f2' class ='p2field'></div>
+    <div id='p_two_f3' class ='p2field'></div>
+    <div id='p_two_f4' class ='p2field'></div>
+   </div>
 
 </div>
 <!--Bottom Wrap: Player 2's Hand -->
@@ -130,7 +142,7 @@
   });
 
 ////////////////////////
-//new styuff/////////////
+//new stuff/////////////
 //dont knwo if you need the fucntion call to replace the elemnts in teh div///////
 ////////////////////////////
 
@@ -148,6 +160,17 @@
       $(this).html(card);
 
     });
+
+        //Renders Player 1's field
+    $('.p1field').each(function () {
+      var index = $(this).prop('id');
+      index = index.replace(/[^\d]/g, '');
+      var card = temp.p1.field[index];
+      console.log(index);
+      console.log(card);
+      $(this).html(card);
+
+    });
     //Renders Player 2's Hand
     $('.p2hand').each(function () {
       var index = $(this).prop('id');
@@ -158,6 +181,18 @@
       $(this).html(card);
 
     });
+
+            //Renders Player 2's field
+    $('.p2field').each(function () {
+      var index = $(this).prop('id');
+      index = index.replace(/[^\d]/g, '');
+      var card = temp.p2.field[index];
+      console.log(index);
+      console.log(card);
+      $(this).html(card);
+
+  });
+
   });
 </script>
 
