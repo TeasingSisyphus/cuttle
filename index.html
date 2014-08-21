@@ -30,13 +30,27 @@
 </div>
 
 <!--Middle Wrap: THe Field-->
-<div id='field' class='wrap2'>THe FIELD
+<div id='field' class='wrap2'>The FIELD
 
   <!--Field Player 1 -->
-  <div id='field1'>Player 1 Field</div>
+  <div id='field1'>Player 1 Field
+    <div id='p_one_f0' class ='p1field'></div>
+    <div id='p_one_f1' class ='p1field'></div>
+    <div id='p_one_f2' class ='p1field'></div>
+    <div id='p_one_f3' class ='p1field'></div>
+    <div id='p_one_f4' class ='p1field'></div>
+    <div id='p_one_f5' class ='p1field'></div>
+  </div>
 
   <!--Field Player 2 -->
-   <div id='field2'>Player 2 Field</div>
+   <div id='field2'>Player 2 Field
+    <div id='p_two_f0' class ='p2field'></div>
+    <div id='p_two_f1' class ='p2field'></div>
+    <div id='p_two_f2' class ='p2field'></div>
+    <div id='p_two_f3' class ='p2field'></div>
+    <div id='p_two_f4' class ='p2field'></div>
+    <div id='p_two_f5' class ='p2field'></div>
+   </div>
 
 </div>
 <!--Bottom Wrap: Player 2's Hand -->
@@ -156,7 +170,26 @@
       console.log(index);
       console.log(card);
       $(this).html(card);
+    });
 
+    //Renders Player 1's Field
+    $('.p1field').each(function () {
+      var index = $(this).prop('id');
+      index = index.replace(/[^\d]/g, '');
+      var card = temp.p1.field[index];
+      console.log(index);
+      console.log(card);
+      $(this).html(card);
+    });
+
+    //Renders Player 2's Field
+    $('.p1field').each(function () {
+      var index = $(this).prop('id');
+      index = index.replace(/[^\d]/g, '');
+      var card = temp.p2.field[index];
+      console.log(index);
+      console.log(card);
+      $(this).html(card);
     });
   });
 </script>
