@@ -9,31 +9,32 @@
 <div id='fullwrap'>
 
 <!--Top Wrap: Player 1's Hand -->
-<div id='hand1' class='wrap2'> Player 1 Hand:
+  <div id='hand1' class='wrap2'> <p>Player 1 Hand: </p> 
+     <div class='cardwrap'> 
+      <div id='p_one_h0' class ='p1hand'>A</div>
+      <div id='p_one_h1' class ='p1hand'>A</div>
+      <div id='p_one_h2' class ='p1hand'>A</div>
+      <div id='p_one_h3' class ='p1hand'>A</div>
+      <div id='p_one_h4' class ='p1hand'>A</div>
+      <div id='p_one_h5' class ='p1hand'>A</div>
+      <div id='p_one_h6' class ='p1hand'>A</div>
+      <div id='p_one_h7' class ='p1hand'>A</div>
+    </div>
 
-    <div id='p_one_h0' class ='p1hand'></div>
-    <div id='p_one_h1' class ='p1hand'></div>
-    <div id='p_one_h2' class ='p1hand'></div>
-    <div id='p_one_h3' class ='p1hand'></div>
-    <div id='p_one_h4' class ='p1hand'></div>
-    <div id='p_one_h5' class ='p1hand'></div>
-    <div id='p_one_h6' class ='p1hand'></div>
-    <div id='p_one_h7' class ='p1hand'></div>
+    <!--Picking Cards--> 
+      <div id='picard1' class='wrap3'>PICK CARD</div>
+    <!--FIeld Cards-->
+      <div id='field1button' class='wrap3'>Play Card to Field P1</div>
+    
+    
 
-  <!--Picking Cards--> 
-    <div id='picard1'>PICK CARD</div>
-  <!--FIeld Cards-->
-    <div id='field1button'>Play Card to Field P1</div>
-  
-  
-
-</div>
+  </div>
 
 <!--Middle Wrap: THe Field-->
-<div id='field' class='wrap2'>The FIELD
+  <div id='field' class='wrap2'><p>The FIELD</p>
 
   <!--Field Player 1 -->
-  <div id='field1'>Player 1 Field
+  <div id='field1'> <p>Player 1 Field </p>
     <div id='p_one_f0' class ='p1field'></div>
     <div id='p_one_f1' class ='p1field'></div>
     <div id='p_one_f2' class ='p1field'></div>
@@ -43,7 +44,7 @@
   </div>
 
   <!--Field Player 2 -->
-   <div id='field2'>Player 2 Field
+   <div id='field2'> <p>Player 2 Field </p>
     <div id='p_two_f0' class ='p2field'></div>
     <div id='p_two_f1' class ='p2field'></div>
     <div id='p_two_f2' class ='p2field'></div>
@@ -52,10 +53,12 @@
     <div id='p_two_f5' class ='p2field'></div>
    </div>
 
-</div>
-<!--Bottom Wrap: Player 2's Hand -->
-<div id= 'hand2' class ='wrap2'>Player 2 Hand:
+  </div>
 
+
+<!--Bottom Wrap: Player 2's Hand -->
+<div id= 'hand2' class ='wrap2'> <p>Player 2 Hand: </p>
+   <div class='cardwrap'> 
     <div id='p_two_h0' class ='p2hand'></div>
     <div id='p_two_h1' class ='p2hand'></div>
     <div id='p_two_h2' class ='p2hand'></div>
@@ -64,132 +67,135 @@
     <div id='p_two_h5' class ='p2hand'></div>
     <div id='p_two_h6' class ='p2hand'></div>
     <div id='p_two_h7' class ='p2hand'></div>
-   
+  </div> 
    <!--Picking Cards--> 
     <div id='picard2'>PICK CARD</div>
    <!--FIeld Cards-->
     <div id='field2button'>Play Card to Field P2</div>
  
 
-</div>
+  </div>
 
-</div>
-
+</div id='floatbuttons'>
 <!-- FLoat Elements For GamePlay -->
         
-        <div id='shuflcard'>SHUFFLE CARDS</div>
-        <div id='dealcard'>DEAL</div>
-        <div id='renderbutton'>RENDER</div>
+        <div id='shuflcard' class='float'>SHUFFLE CARDS</div>
+        <div id='dealcard' class='float'>DEAL</div>
+        <div id='renderbutton' class='float'>RENDER</div>
 
 
 </div>
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<!---//////////////////////////////////-->
+<!--THE SCRIPTS ARE BELOW-->
+<!---//////////////////////////////////-->
 
-<script src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 
-<script>
-  var socket = io.connect('http://localhost:3000');
-  var count = 0;
+  <script src="/socket.io/socket.io.js"></script>
 
-  /////////////////////////
-  //On Click Method Calls//
-  /////////////////////////
+  <script>
+    var socket = io.connect('http://localhost:3000');
+    var count = 0;
 
-  $('#picard').click(function() {  //when Pick a Card div is clicked
-    socket.emit('card', count);
-  });
+    /////////////////////////
+    //On Click Method Calls//
+    /////////////////////////
 
-  $('#shuflcard').click(function() {  //when shuffle div is clicked
-    socket.emit('shuffle');
-  });
-
-  $('#dealcard').click(function() {  //when deal div is clicked
-    socket.emit('deal');
-  });
-
-  $('#field1button').click(function() {
-    var index = prompt('Which Card, sucka?!');
-    socket.emit('p1_play', index);
-  });
-
-  $('#field2button').click(function() {
-    var index = prompt('Which Card, sucka?!');
-    socket.emit('p2_play', index);
-  });
-
-  $('#renderbutton').click(function() {
-    socket.emit('render req');
-  });
-
-  ////////////////
-  //Socket Stuff//
-  ////////////////
-
-  socket.on('gamesend', function (game) {
-    var card = game.cards[count];
-    count++;
-    console.log('Card Number ' + count + " is: " + card);
-  });
-
-  socket.on('shuffled', function (game) {
-    var arr = game.deck;
-    console.log('Current Deck:\n' + arr);
-  });
-
-  socket.on('dealt', function (game) {
-    var temp = game.p1.hand;
-    var temp2 = game.p2.hand;
-    console.log("Player 1's Hand: " + temp + "\nPlayer 2's Hand: " + temp2);
-  });
-
-////////////////////////
-//new styuff/////////////
-//dont knwo if you need the fucntion call to replace the elemnts in teh div///////
-////////////////////////////
-
-
-  socket.on('render', function (game){
-    var temp = game;
-
-    //Renders Player 1's Hand
-    $('.p1hand').each(function () {
-      var index = $(this).prop('id');
-      index = index.replace(/[^\d]/g, '');
-      var card = temp.p1.hand[index];
-      console.log(index);
-      console.log(card);
-      $(this).html(card);
-
-    });
-    //Renders Player 2's Hand
-    $('.p2hand').each(function () {
-      var index = $(this).prop('id');
-      index = index.replace(/[^\d]/g, '');
-      var card = temp.p2.hand[index];
-      console.log(index);
-      console.log(card);
-      $(this).html(card);
+    $('#picard').click(function() {  //when Pick a Card div is clicked
+      socket.emit('card', count);
     });
 
-    //Renders Player 1's Field
-    $('.p1field').each(function () {
-      var index = $(this).prop('id');
-      index = index.replace(/[^\d]/g, '');
-      var card = temp.p1.field[index];
-      console.log(index);
-      console.log(card);
-      $(this).html(card);
+    $('#shuflcard').click(function() {  //when shuffle div is clicked
+      socket.emit('shuffle');
     });
 
-    //Renders Player 2's Field
-    $('.p2field').each(function () {
-      var index = $(this).prop('id');
-      index = index.replace(/[^\d]/g, '');
-      var card = temp.p2.field[index];
-      console.log(index);
-      console.log(card);
-      $(this).html(card);
+    $('#dealcard').click(function() {  //when deal div is clicked
+      socket.emit('deal');
     });
-  });
-</script>
+
+    $('#field1button').click(function() {
+      var index = prompt('Which Card, sucka?!');
+      socket.emit('p1_play', index);
+    });
+
+    $('#field2button').click(function() {
+      var index = prompt('Which Card, sucka?!');
+      socket.emit('p2_play', index);
+    });
+
+    $('#renderbutton').click(function() {
+      socket.emit('render req');
+    });
+
+    ////////////////
+    //Socket Stuff//
+    ////////////////
+
+    socket.on('gamesend', function (game) {
+      var card = game.cards[count];
+      count++;
+      console.log('Card Number ' + count + " is: " + card);
+    });
+
+    socket.on('shuffled', function (game) {
+      var arr = game.deck;
+      console.log('Current Deck:\n' + arr);
+    });
+
+    socket.on('dealt', function (game) {
+      var temp = game.p1.hand;
+      var temp2 = game.p2.hand;
+      console.log("Player 1's Hand: " + temp + "\nPlayer 2's Hand: " + temp2);
+    });
+
+  ////////////////////////
+  //new styuff/////////////
+  //dont knwo if you need the fucntion call to replace the elemnts in teh div///////
+  ////////////////////////////
+
+
+    socket.on('render', function (game){
+      var temp = game;
+
+      //Renders Player 1's Hand
+      $('.p1hand').each(function () {
+        var index = $(this).prop('id');
+        index = index.replace(/[^\d]/g, '');
+        var card = temp.p1.hand[index];
+        console.log(index);
+        console.log(card);
+        $(this).html(card);
+
+      });
+      //Renders Player 2's Hand
+      $('.p2hand').each(function () {
+        var index = $(this).prop('id');
+        index = index.replace(/[^\d]/g, '');
+        var card = temp.p2.hand[index];
+        console.log(index);
+        console.log(card);
+        $(this).html(card);
+      });
+
+      //Renders Player 1's Field
+      $('.p1field').each(function () {
+        var index = $(this).prop('id');
+        index = index.replace(/[^\d]/g, '');
+        var card = temp.p1.field[index];
+        console.log(index);
+        console.log(card);
+        $(this).html(card);
+      });
+
+      //Renders Player 2's Field
+      $('.p2field').each(function () {
+        var index = $(this).prop('id');
+        index = index.replace(/[^\d]/g, '');
+        var card = temp.p2.field[index];
+        console.log(index);
+        console.log(card);
+        $(this).html(card);
+      });
+    });
+    </script>
